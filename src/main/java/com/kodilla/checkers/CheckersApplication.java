@@ -61,7 +61,7 @@ public class CheckersApplication extends Application {
         lblStatus.setTranslateX(270);
         resetButton.setOnAction(startNewGame());
         resetButton.setVisible(true);
-        lblStatus.setPrefSize(100,10);
+        lblStatus.setPrefSize(200,10);
         BorderPane pane = new BorderPane(root);
         pane.setTop(resetButton);
         pane.setBottom(lblStatus);
@@ -98,8 +98,6 @@ public class CheckersApplication extends Application {
             while (!endOfGame && !enemyTurn) {
 
                 MoveExecutor moveType = getMoveType(figure, newX, newY, oldX, oldY);
-                System.out.println(moveType.getMoveType());
-                System.out.println(oldX);
 
                 switch (moveType.getMoveType()) {
                     case ABORT:
@@ -165,17 +163,13 @@ public class CheckersApplication extends Application {
             });
 
             figure.setOnMouseDragged(event -> {
-                figure.setTranslateX(event.getSceneX() - mouseX);
-                figure.setTranslateY(event.getSceneY() - mouseY);
+                figure.setTranslateX(event.getSceneX() - mouseX + 20);
+                figure.setTranslateY(event.getSceneY() - mouseY + 20);
             });
 
             figure.setOnMouseReleased(event -> {
                 newX = getIndex(event.getSceneX());
                 newY = getIndex(event.getSceneY());
-                System.out.println(oldX);
-                System.out.println(oldY);
-                System.out.println(newX);
-                System.out.println(newY);
                 playerTurn(figure, newX, newY, oldX, oldY);
             });
         }
@@ -184,7 +178,6 @@ public class CheckersApplication extends Application {
 
     private void enemyTurn() {
         while(enemyTurn && !endOfGame) {
-            System.out.println("enemyTurn");
 
             boolean moveResult = false;
             Random random = new Random();
@@ -269,7 +262,12 @@ public class CheckersApplication extends Application {
                 lblStatus.setVisible(false);
                 whiteFiguresGroup.getChildren().clear();
                 blackFiguresGroup.getChildren().clear();
-                System.out.println("Game is starting!!");
+
+                for(int i = 0; i < widthSpots; i++) {
+                    for(int j = 0; j < heightSpots; j++) {
+                        board[i][j].setFigure(null);
+                    }
+                }
 
                 for(int i = 0; i < widthSpots; i++) {
                     for(int j = 0; j < heightSpots; j++) {
