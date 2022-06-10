@@ -290,6 +290,8 @@ public class CheckersApplication extends Application {
                     }
                 }
                 lblStatus.setVisible(true);
+                lblStatus.setText("White player turn");
+                endOfGame = false;
             }
         };
     }

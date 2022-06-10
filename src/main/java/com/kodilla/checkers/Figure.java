@@ -21,9 +21,10 @@ public class Figure extends StackPane {
         backEllipse.setStrokeWidth(tileSize * 0.04);
         setTranslateX((tileSize - tileSize * 0.37 * 2) / 2);
         setTranslateY((tileSize - tileSize * 0.27 * 2) / 2);
+        backEllipse.setTranslateY(8);
 
         Ellipse ellipse = new Ellipse(tileSize * 0.37, tileSize * 0.27);
-        ellipse.setFill(type == FigureType.BLACK ? Color.BLACK : Color.WHITE);
+        ellipse.setFill(type == FigureType.BLACK ? Color.GRAY : Color.WHITE);
         ellipse.setStroke(Color.BLACK);
         ellipse.setStrokeWidth(tileSize * 0.04);
         setTranslateX((tileSize - tileSize * 0.37 * 2) / 2);
